@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.taskmanagementapp.data.dao.TodoDao
+import com.example.taskmanagementapp.data.entities.Converter
 import com.example.taskmanagementapp.data.entities.TodoData
 
 @Database(entities = [TodoData::class], version = 1, exportSchema = false)
+@TypeConverters(Converter::class)
 abstract  class TodoDataBase  : RoomDatabase(){
 
     abstract fun todoDao() : TodoDao
@@ -32,13 +35,13 @@ abstract  class TodoDataBase  : RoomDatabase(){
                  */
 
                 synchronized(this){
-                    INSTANCE = Room.databaseBuilder(
+                    val instance = Room.databaseBuilder(
                         context.applicationContext,
                         TodoDataBase::class.java,
                         "todo_table"
                     ).build()
-
-                    return INSTANCE!!
+                    INSTANCE = instance
+                    return instance
                 }
 
             }

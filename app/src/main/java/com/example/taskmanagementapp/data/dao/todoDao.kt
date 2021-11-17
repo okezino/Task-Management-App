@@ -10,7 +10,6 @@ import com.example.taskmanagementapp.data.entities.TodoData
 @Dao
 interface  TodoDao {
 
-
     @Query("SELECT *  FROM todo_table ORDER BY id ASC")
     fun getAllData() : LiveData<List<TodoData>>
 

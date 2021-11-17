@@ -3,16 +3,36 @@ package com.example.taskmanagementapp.list
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.taskmanagementapp.BaseFragment
 import com.example.taskmanagementapp.R
+import com.example.taskmanagementapp.data.viewmodel.TodoViewModel
+import com.example.taskmanagementapp.databinding.FragmentListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListFragment(layout : Int = R.layout.fragment_list, menu : Int = R.menu.list_frag_menu) : BaseFragment(layout,menu){
     lateinit var floatBtn : FloatingActionButton
     lateinit var layoutbr : ViewGroup
+    val todoViewModel : TodoViewModel by viewModels()
+    var binding : FragmentListBinding? = null
+
+    private  val adapter : ListAdapter by lazy {
+        ListAdapter()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentListBinding.bind(view)
+
+        var recyclerView = binding!!.recyclerViewTodo
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        todoViewModel.getAllData.observe(viewLifecycleOwner, {
+            adapter.setData(it)
+        })
+
+
         floatBtn = view.findViewById(R.id.floatingActionButton)
         layoutbr = view.findViewById(R.id.listLayout)
 

@@ -8,11 +8,13 @@
         <entry key="app/src/main/res/drawable/ic_baseline_how_to_reg_24.xml" value="0.184375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.22777777777777777" />
         <entry key="app/src/main/res/drawable/ic_no_data.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/drawable/row_shape.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15096251266464034" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.15096251266464034" />
         <entry key="app/src/main/res/layout/fragment_base.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.14437689969604864" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/row_selected.xml" value="0.25" />
         <entry key="app/src/main/res/menu/add_item.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/menu/list_frag_menu.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/menu/update_menu.xml" value="0.16822916666666668" />

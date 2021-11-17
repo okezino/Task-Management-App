@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.example.taskmanagementapp.update.UpdateFragment"
+        android:name="com.example.taskmanagementapp.data.update.UpdateFragment"
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" >
         <action

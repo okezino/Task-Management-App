@@ -9,6 +9,7 @@
     <string name="add">add</string>
     <string name="update">Update</string>
     <string name="delete">delete</string>
+    <string name="my_title">My Title</string>
     <string-array name="priority">
         <item>High</item>
         <item>Medium</item>
