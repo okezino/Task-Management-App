@@ -26,11 +26,33 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
            try {
                repository.insertData(todoData)
-               Log.i("Viewmodel","reached")
+               Log.i("ViewModel","reached")
            }catch (e : Exception){
                throw e
            }
         }
     }
+
+    fun updateTodoData(todoData: TodoData){
+        viewModelScope.launch(Dispatchers.IO) {
+          try {
+              repository.updateData(todoData)
+          }catch (e : Exception){
+              throw  e
+          }
+        }
+    }
+
+    fun deleteTodoData(todoData: TodoData){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                repository.deleteData(todoData)
+            }catch (e : Exception){
+                throw  e
+            }
+        }
+    }
+
+
 
 }

@@ -32,11 +32,14 @@
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
-        android:name="com.example.taskmanagementapp.data.update.UpdateFragment"
+        android:name="com.example.taskmanagementapp.update.UpdateFragment"
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" >
         <action
             android:id="@+id/action_updateFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <argument
+            android:name="todo"
+            app:argType="com.example.taskmanagementapp.data.entities.TodoData" />
     </fragment>
 </navigation>

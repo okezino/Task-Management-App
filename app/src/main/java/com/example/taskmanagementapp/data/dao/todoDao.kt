@@ -1,10 +1,7 @@
 package com.example.taskmanagementapp.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.taskmanagementapp.data.entities.TodoData
 
 @Dao
@@ -15,6 +12,12 @@ interface  TodoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTodoData(data : TodoData)
+
+    @Update
+    suspend fun updateTodoData(data : TodoData)
+
+    @Delete
+    suspend fun  deleteTodo(data: TodoData)
 
 
 

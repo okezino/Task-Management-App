@@ -7,8 +7,12 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.taskmanagementapp.R
 import com.example.taskmanagementapp.data.entities.Priority
+import com.example.taskmanagementapp.data.entities.TodoData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
     val listener : AdapterView.OnItemSelectedListener = object :
@@ -41,6 +45,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
 
     }
     fun parsePriority(priority: String) : Priority {
+
         return   when(priority){
             "High" -> Priority.HIGH
             "Medium" -> Priority.MEDIUM
@@ -48,4 +53,6 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
             else -> Priority.LOW
         }
     }
+
+
 }

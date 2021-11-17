@@ -56,9 +56,7 @@ class AddFragment(layout : Int =  R.layout.fragment_add, menu : Int = R.menu.add
 
     }
 
-    fun validation(mtitle : String , mdes : String) : Boolean{
-        return  TextUtils.isEmpty(mtitle) && TextUtils.isEmpty(mdes)
-    }
+
 
 
 
