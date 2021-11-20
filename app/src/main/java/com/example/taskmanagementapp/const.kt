@@ -9,14 +9,16 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 
 
-fun alertDialog(context : Activity,view: View? = null, func : () -> Unit){
+fun alertDialog(context : Activity,view: View? = null, func : () -> Unit, negativeFunc : (() -> Unit)? = null){
     var builder = AlertDialog.Builder(context).apply {
         setPositiveButton("Yes") { _, _ ->
             func.invoke()
             Toast.makeText(context,"deleted successful", Toast.LENGTH_LONG).show()
             view?.findNavController()?.navigate(R.id.listFragment)
         }
-        setNegativeButton("No"){_,_ -> }
+        setNegativeButton("No"){_,_ ->
+            negativeFunc?.invoke()
+        }
         setTitle("Delete All Item")
         setMessage("Are you sure you want to delete All Item?")
     }

@@ -47,9 +47,7 @@ class UpdateFragment(layout : Int = R.layout.fragment_update,menu: Int = R.menu.
     }
 
     private fun deleteTodo() {
-        alertDialog(requireActivity(),view){
-            todoViewModel.deleteTodoData(args.todo)
-        }
+        alertDialog(requireActivity(),view, { todoViewModel.deleteTodoData(args.todo) })
     }
 
     private fun updateTodo() {

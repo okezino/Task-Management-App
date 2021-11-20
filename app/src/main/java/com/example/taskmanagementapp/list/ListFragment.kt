@@ -21,14 +21,15 @@ import com.example.taskmanagementapp.data.viewmodel.TodoViewModel
 import com.example.taskmanagementapp.databinding.FragmentListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ListFragment(layout : Int = R.layout.fragment_list, menu : Int = R.menu.list_frag_menu) : BaseFragment(layout,menu){
+class ListFragment(layout: Int = R.layout.fragment_list, menu: Int = R.menu.list_frag_menu) :
+    BaseFragment(layout, menu) {
 
 
-    private val todoViewModel : TodoViewModel by viewModels()
-    private val sharedViewModel : SharedViewModel by activityViewModels()
-    private var binding : FragmentListBinding? = null
+    private val todoViewModel: TodoViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var binding: FragmentListBinding? = null
 
-    private  val adapter : ListAdapter by lazy {
+    private val adapter: ListAdapter by lazy {
         ListAdapter()
     }
 
@@ -36,12 +37,12 @@ class ListFragment(layout : Int = R.layout.fragment_list, menu : Int = R.menu.li
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentListBinding.bind(view)
 
-        var recyclerView = binding!!.recyclerViewTodo
-        recyclerView.adapter = adapter
-        binding!!.lifecycleOwner = this
+        setUpRecyclerView()
         binding!!.sharedViewModel = sharedViewModel
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        swipeToDelete(recyclerView)
+        binding!!.lifecycleOwner = this
+
+
+
         todoViewModel.getAllData.observe(viewLifecycleOwner, {
             sharedViewModel.updateTodoItem(it)
             adapter.setData(it)
@@ -49,12 +50,11 @@ class ListFragment(layout : Int = R.layout.fragment_list, menu : Int = R.menu.li
     }
 
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
+        when (item.itemId) {
             R.id.deleteAll -> {
-                alertDialog(requireActivity()){ confirmDeleteAll() }
+                alertDialog(requireActivity(), null,{ confirmDeleteAll() })
             }
         }
         return super.onOptionsItemSelected(item)
@@ -68,18 +68,29 @@ class ListFragment(layout : Int = R.layout.fragment_list, menu : Int = R.menu.li
         todoViewModel.deleteTodoData(todoData)
     }
 
-    private fun swipeToDelete(recyclerView: RecyclerView){
-        val swipeToDeleteCallback = object : SwipeToDelete(){
+    private fun swipeToDelete(recyclerView: RecyclerView) {
+        val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-              val todoData = adapter.dataList[viewHolder.adapterPosition]
-                alertDialog(requireActivity()){confirmDeleteOneItem(todoData)}
+                val todoData = adapter.dataList[viewHolder.adapterPosition]
+                alertDialog(requireActivity(),null,{ confirmDeleteOneItem(todoData) }, {setUpRecyclerView()})
             }
         }
 
-        val itemTouchHelper =  ItemTouchHelper(swipeToDeleteCallback)
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
-        adapter.notifyDataSetChanged()
+    }
+
+    private fun setUpRecyclerView() {
+        var recyclerView = binding!!.recyclerViewTodo
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        swipeToDelete(recyclerView)
+
+    }
+
+    private fun restoreDeletedItem(){
+        setUpRecyclerView()
     }
 
 

@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagementapp.R
 import com.example.taskmanagementapp.data.entities.Priority
@@ -52,7 +53,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     }
 
     fun setData(list : List<TodoData>){
+        val diffUtilClass = DiffUtilClass(dataList, list)
+        val diffUtilResult = DiffUtil.calculateDiff(diffUtilClass)
         this.dataList = list
-        notifyDataSetChanged()
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 }

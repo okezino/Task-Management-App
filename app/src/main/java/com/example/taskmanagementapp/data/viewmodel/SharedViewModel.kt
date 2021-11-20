@@ -17,7 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
-    var  todoItems  : MutableLiveData<Boolean> = MutableLiveData(true)
+    var  todoItems  : MutableLiveData<Boolean> = MutableLiveData(false)
     val  _todoItems : LiveData<Boolean>
         get() = todoItems
 
