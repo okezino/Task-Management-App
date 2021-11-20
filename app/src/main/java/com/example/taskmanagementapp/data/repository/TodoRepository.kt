@@ -20,4 +20,8 @@ class TodoRepository(private val todoDao: TodoDao) {
     suspend fun deleteData(todoData: TodoData){
         todoDao.deleteTodo(todoData)
     }
+
+    suspend fun deleteAll(){
+        todoDao.deleteAll()
+    }
 }

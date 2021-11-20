@@ -53,6 +53,16 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun deleteAllTodoData(){
+        viewModelScope.launch {
+            try {
+                repository.deleteAll()
+            }catch (e : Exception){
+                throw  e
+            }
+        }
+    }
+
 
 
 }

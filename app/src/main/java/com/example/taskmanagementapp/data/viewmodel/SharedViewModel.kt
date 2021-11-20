@@ -7,6 +7,8 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.taskmanagementapp.R
 import com.example.taskmanagementapp.data.entities.Priority
@@ -15,6 +17,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
+    var  todoItems  : MutableLiveData<Boolean> = MutableLiveData(true)
+    val  _todoItems : LiveData<Boolean>
+        get() = todoItems
+
+
+
+    fun updateTodoItem(data : List<TodoData>){
+        todoItems.value = data.isEmpty()
+    }
+
+
     val listener : AdapterView.OnItemSelectedListener = object :
     AdapterView.OnItemSelectedListener{
         override fun onItemSelected(parent: AdapterView<*>?,
@@ -25,15 +38,15 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
             when(position){
                 0 -> {
                     (parent!!.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application,
-                        R.color.green))
+                        R.color.yellow))
                 }
                 1 -> {
                     (parent!!.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application,
-                        R.color.purple_200))
+                        R.color.green))
                 }
                 2 -> {
                     (parent!!.getChildAt(0) as TextView).setTextColor(ContextCompat.getColor(application,
-                        R.color.teal_200))
+                        R.color.red))
                 }
             }
 

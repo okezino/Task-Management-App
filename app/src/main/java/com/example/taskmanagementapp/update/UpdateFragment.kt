@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.taskmanagementapp.BaseFragment
 import com.example.taskmanagementapp.R
+import com.example.taskmanagementapp.alertDialog
 import com.example.taskmanagementapp.data.entities.Priority
 import com.example.taskmanagementapp.data.entities.TodoData
 import com.example.taskmanagementapp.data.viewmodel.SharedViewModel
@@ -22,6 +23,7 @@ class UpdateFragment(layout : Int = R.layout.fragment_update,menu: Int = R.menu.
 
      var binding : FragmentUpdateBinding? = null
      val args : UpdateFragmentArgs by navArgs()
+
      private val todoViewModel : TodoViewModel by viewModels()
      val sharedViewModel : SharedViewModel by activityViewModels()
 
@@ -45,20 +47,9 @@ class UpdateFragment(layout : Int = R.layout.fragment_update,menu: Int = R.menu.
     }
 
     private fun deleteTodo() {
-        var builder = AlertDialog.Builder(requireContext()).apply {
-                  setPositiveButton("Yes") { _, _ ->
-                todoViewModel.deleteTodoData(args.todo)
-                Toast.makeText(requireContext(),"deleted successful", Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.listFragment)
-            }
-            setNegativeButton("No"){_,_ -> }
-            setTitle("Delete '${args.todo.title}'")
-            setTitle("Are you sure you want to delete '${args.todo.title}'")
+        alertDialog(requireActivity(),view){
+            todoViewModel.deleteTodoData(args.todo)
         }
-
-        builder.create().show()
-
-
     }
 
     private fun updateTodo() {
