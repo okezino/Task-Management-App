@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 
 open class BaseFragment(private val layout : Int,private val menu_tag: Int) : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +24,8 @@ open class BaseFragment(private val layout : Int,private val menu_tag: Int) : Fr
         inflater.inflate(menu_tag, menu)
 
     }
+
+
 
 
 

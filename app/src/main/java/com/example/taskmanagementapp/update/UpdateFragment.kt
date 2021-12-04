@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +24,7 @@ class UpdateFragment(layout : Int = R.layout.fragment_update,menu: Int = R.menu.
      val args : UpdateFragmentArgs by navArgs()
 
      private val todoViewModel : TodoViewModel by viewModels()
-     val sharedViewModel : SharedViewModel by activityViewModels()
+     private val sharedViewModel : SharedViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
