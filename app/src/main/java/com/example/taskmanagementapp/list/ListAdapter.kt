@@ -20,11 +20,6 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     var dataList = listOf<TodoData>()
 
     class ListViewHolder(private val binding : RowSelectedBinding) : RecyclerView.ViewHolder(binding.root){
-        val title : TextView = itemView.findViewById(R.id.todo_title)
-        val subTitle: TextView = itemView.findViewById(R.id.sub_title)
-        var priority : CardView = itemView.findViewById(R.id.icon_color)
-        val layout : ViewGroup = itemView.findViewById(R.id.todo_layout)
-
         fun bind(todoData: TodoData){
             binding.todoData = todoData
             binding.executePendingBindings()

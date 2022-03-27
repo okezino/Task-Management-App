@@ -23,6 +23,8 @@ class UpdateFragment(layout : Int = R.layout.fragment_update,menu: Int = R.menu.
      var binding : FragmentUpdateBinding? = null
      val args : UpdateFragmentArgs by navArgs()
 
+
+
      private val todoViewModel : TodoViewModel by viewModels()
      private val sharedViewModel : SharedViewModel by activityViewModels()
 
