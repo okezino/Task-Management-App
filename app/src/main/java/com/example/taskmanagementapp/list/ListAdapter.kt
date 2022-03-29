@@ -39,7 +39,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        var currentItem = dataList[position]
+        val currentItem = dataList[position]
         holder.bind(currentItem)
     }
 
